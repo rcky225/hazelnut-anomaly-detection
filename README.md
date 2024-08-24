@@ -1,1 +1,2 @@
-"# hazelnut-anomaly-detection" 
+[ヘーゼルナッツの不良品検知をAIアプリで実装してみた](https://qiita.com/rcky225/items/625fac2459246352834b)
+の中身（コード類）をここに格納しています。
