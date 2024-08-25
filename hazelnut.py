@@ -6,6 +6,7 @@ from tensorflow.keras.preprocessing import image
 
 import numpy as np
 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 classes = ["不良品","良品"]
 image_size = 100
