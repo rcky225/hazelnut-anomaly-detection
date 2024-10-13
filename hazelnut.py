@@ -1,10 +1,9 @@
 import os
+import numpy as np
 from flask import Flask, request, redirect, render_template, flash
 from werkzeug.utils import secure_filename
 from tensorflow.keras.models import Sequential, load_model
 from tensorflow.keras.preprocessing import image
-
-import numpy as np
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
@@ -49,7 +48,6 @@ def upload_file():
             return render_template("index.html",answer=pred_answer)
 
     return render_template("index.html",answer="")
-
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 8080))
