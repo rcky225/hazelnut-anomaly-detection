@@ -1,6 +1,6 @@
 import os
 import numpy as np
-from flask import Flask, request, redirect, render_template, flash
+from flask import Flask, request, redirect, render_template, flash, jsonify
 from werkzeug.utils import secure_filename
 from tensorflow.keras.models import load_model
 from tensorflow.keras.utils import load_img, img_to_array
@@ -18,6 +18,7 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.secret_key = "your_secret_key"  # flashメッセージ用
 
 # アップロードフォルダが存在しない場合は作成
 if not os.path.exists(UPLOAD_FOLDER):
@@ -54,20 +55,30 @@ def upload_file():
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(filepath)
 
-            # 画像を読み込み、配列に変換
-            img = load_img(filepath, target_size=(image_size, image_size))
-            img = img_to_array(img) / 255.0  # 正規化
-            data = np.expand_dims(img, axis=0)
+            try:
+                # 画像を読み込み、配列に変換
+                img = load_img(filepath, target_size=(image_size, image_size))
+                img = img_to_array(img) / 255.0  # 正規化
+                data = np.expand_dims(img, axis=0)
 
-            # モデルで予測
-            result = model.predict(data)[0]
-            predicted = result.argmax()
-            pred_answer = f"これは {classes[predicted]} です"
+                # モデルで予測
+                result = model.predict(data)[0]
+                predicted = result.argmax()
+                pred_answer = f"これは {classes[predicted]} です"
 
-            return render_template("index.html", answer=pred_answer)
+                return render_template("index.html", answer=pred_answer)
+
+            except Exception as e:
+                flash(f"画像の処理中にエラーが発生しました: {e}")
+                return redirect(request.url)
 
     # 初回表示時は空のレスポンスを返す
     return render_template("index.html", answer="")
+
+# エラー時のJSONレスポンス
+@app.errorhandler(500)
+def internal_error(error):
+    return jsonify({"error": "内部サーバーエラー", "message": str(error)}), 500
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 8080))
