@@ -2,8 +2,8 @@ import os
 import numpy as np
 from flask import Flask, request, redirect, render_template, flash, jsonify
 from werkzeug.utils import secure_filename
-from tensorflow.keras.models import load_model
-from tensorflow.keras.utils import load_img, img_to_array
+from keras.models import load_model
+from PIL import Image
 
 # TensorFlow の不要なログを抑制
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -57,8 +57,8 @@ def upload_file():
 
             try:
                 # 画像を読み込み、配列に変換
-                img = load_img(filepath, target_size=(image_size, image_size))
-                img = img_to_array(img) / 255.0  # 正規化
+                img = Image.open(filepath).resize((image_size, image_size))
+                img = np.array(img) / 255.0  # 正規化
                 data = np.expand_dims(img, axis=0)
 
                 # モデルで予測
