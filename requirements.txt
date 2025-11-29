@@ -1,34 +1,12 @@
-absl-py
-astor
-bleach
-bottle
-click
-certifi
-chardet
-flask
-future
-gast
-grpcio
-gunicorn
-h5py
-html5lib
-itsdangerous
-idna
-Jinja2
-line-bot-sdk
-Markdown
-MarkupSafe
-numpy
-oauthlib
-pillow
-protobuf
-PyYAML
-python-dotenv
-requests
-scipy
-six
-tensorboard
-tensorflow-cpu
-termcolor
-urllib3
-Werkzeug
+# Core Dependencies
+flask>=2.3.0,<3.0.0
+werkzeug>=2.3.0,<3.0.0
+gunicorn>=21.0.0
+
+# Machine Learning
+tensorflow>=2.13.0,<3.0.0
+numpy>=1.24.0,<2.0.0
+pillow>=10.0.0
+
+# Utilities
+python-dotenv>=1.0.0

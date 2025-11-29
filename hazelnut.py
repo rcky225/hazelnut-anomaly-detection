@@ -2,7 +2,7 @@ import os
 import numpy as np
 from flask import Flask, request, redirect, render_template, flash, jsonify
 from werkzeug.utils import secure_filename
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 from PIL import Image
 
 # TensorFlow の不要なログを抑制
