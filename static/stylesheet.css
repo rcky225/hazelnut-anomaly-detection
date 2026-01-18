@@ -3,11 +3,12 @@
    =========================== */
 :root {
     /* Colors */
-    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    --success-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-    --warning-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    /* Colors */
+    --primary-gradient: #667eea;
+    --secondary-gradient: #f093fb;
+    --accent-gradient: #4facfe;
+    --success-gradient: #43e97b;
+    --warning-gradient: #fee140;
 
     --bg-dark: #0f0c29;
     --bg-mid: #1a1a2e;
@@ -57,9 +58,8 @@
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background: var(--bg-dark);
-    background-image:
-        radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+    background: var(--bg-dark);
+    /* background-image removed for minimal look */
     color: var(--text-primary);
     min-height: 100vh;
     display: flex;
@@ -98,20 +98,17 @@ body {
 
 .header-icon {
     font-size: 2rem;
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 2rem;
+    color: var(--accent-gradient);
     animation: pulse 2s ease-in-out infinite;
 }
 
 .header-title {
     font-size: 1.5rem;
     font-weight: 700;
-    background: var(--primary-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-gradient);
 }
 
 .header-badge {
@@ -159,10 +156,7 @@ body {
 }
 
 .gradient-text {
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--accent-gradient);
 }
 
 .subtitle {
@@ -210,10 +204,8 @@ body {
 
 .upload-icon {
     font-size: 4rem;
-    background: var(--primary-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 4rem;
+    color: var(--primary-gradient);
     margin-bottom: var(--spacing-md);
     animation: float 3s ease-in-out infinite;
 }
@@ -385,10 +377,8 @@ body {
 
 .feature-card i {
     font-size: 2.5rem;
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 2.5rem;
+    color: var(--accent-gradient);
     margin-bottom: var(--spacing-sm);
 }
 
